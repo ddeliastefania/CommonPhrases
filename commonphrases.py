@@ -37,8 +37,8 @@ def readfile(filename):
 
 def splitphrases(continut):
     split = re.split('[?!.]', continut)
-    variabila = repairsentence(split)
-    return variabila
+    sentence = repairsentence(split)
+    return sentence
 
 
 def repairsentence(allcontent):
@@ -70,8 +70,14 @@ def comparephrases(firstlist, secondlist):
     commonphrases=[]
     for list1 in firstlist:
         for list2 in secondlist:
-            if list1 == list2:
-                commonphrases.append(list1)
+            if list1 == list2 and not commonphrases.__contains__(remakephrases(list1)):
+                commonphrases.append(remakephrases(list1))
     return commonphrases
+
+
+def remakephrases(phrase):
+    space = ' '
+    space = space.join(phrase)
+    return space
 
 main()
